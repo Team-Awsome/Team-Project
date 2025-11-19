@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - player
+  - Enemy
+  - ui_gameOver
+  - ui_ammo
+  - ui_clip
+  - ui_pause
+  - weaponUI
+  - ui_health
   layers:
   - Default
   - TransparentFX

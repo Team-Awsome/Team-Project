@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     Ray jumpRay;
     Ray interactRay;
     RaycastHit interactHit;
-    GameObject pickupObj;
     GameObject gameoverscreen;
     public PlayerInput input;
     float verticalMove;
@@ -22,19 +21,21 @@ public class PlayerController : MonoBehaviour
     public float interactDistance = 1f;
     public float jumpRayDistance = 1.1f;
 
-    public int health = 600;
-    public int maxhealth = 800;
+    public int health = 20;
+    public int maxhealth = 20;
 
-    public bool attacking = false;
     public bool isSprinting = false;
 
     public void Start()
     {
         if (SceneManager.GetActiveScene().buildIndex >= 1)
         {
+            gameoverscreen = GameObject.FindGameObjectWithTag("ui_gameOver");
+
+            gameoverscreen.SetActive(false);
 
             Time.timeScale = 1;
-
+            
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             deathspeaker = GetComponent<AudioSource>();
@@ -60,9 +61,9 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
             if (!deathspeaker.isPlaying)
             { 
-                Destroy(GameObject.FindWithTag("MUSICBOX"));
-                Destroy(GameObject.FindWithTag("musicbox2"));
-                deathspeaker.Play(); 
+                //Destroy(GameObject.FindWithTag("MUSICBOX"));
+                //Destroy(GameObject.FindWithTag("musicbox2"));
+                deathspeaker.Play();
             }
             
 
@@ -96,15 +97,6 @@ public class PlayerController : MonoBehaviour
         interactRay.origin = playerCam.transform.position;
         interactRay.direction = playerCam.transform.forward;
 
-        if (Physics.Raycast(interactRay, out interactHit, interactDistance))
-        {
-            if (interactHit.collider.gameObject.tag == "weapon")
-            {
-                pickupObj = interactHit.collider.gameObject;
-            }
-        }
-        else
-            pickupObj = null;
 
 
         rb.linearVelocity = (temp.x * transform.forward) +
@@ -163,11 +155,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hazard")
         {
-            health -= 100;
+            health -= 1;
         }
         if (collision.gameObject.tag == "Slash")
         {
-            health -= 100;
+            health -= 1;
         }
 
         if (collision.gameObject.tag == "Enemy")
