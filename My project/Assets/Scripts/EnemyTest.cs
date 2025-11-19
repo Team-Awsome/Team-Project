@@ -1,16 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+
 public class enemy1 : MonoBehaviour
 {
     public NavMeshAgent agent;
-
     public Transform player;
-
     public float health;
 
     public LayerMask whatIsGround, whatIsPlayer;
-
 
     //Patrolling
     public Vector3 walkPoint;
@@ -18,10 +16,10 @@ public class enemy1 : MonoBehaviour
     public float walkPointRange;
 
     //Attack
-    public float timeBetweenAttacks;
+    public float timeBetweenAttacks = 2f;
     bool alreadyAttacked;
 
-    // Jump attack
+    //Jump Attack
     public float jumpForce = 7f;
     public float forwardForce = 8f;
 
@@ -30,15 +28,25 @@ public class enemy1 : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     private Rigidbody rb;
+    private int enemyLayer;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("player")?.transform;
+
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+
+        // Store this enemy layer to ignore it in grounding
+        enemyLayer = gameObject.layer;
+
+        // Make sure Rigidbody doesn’t rotate (keeps physics stable)
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
+
     private void Update()
     {
-        if (agent == null || !agent.enabled || !agent.isOnNavMesh)
+        if (agent == null)
             return;
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -48,8 +56,11 @@ public class enemy1 : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
     }
+
     private void Patroling()
     {
+        if (!agent.enabled) return;
+
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -57,95 +68,98 @@ public class enemy1 : MonoBehaviour
 
         Vector3 distanceToWalkpoint = transform.position - walkPoint;
 
-        //Walkpoint reached
         if (distanceToWalkpoint.magnitude < 1f)
             walkPointSet = false;
     }
+
     private void SearchWalkPoint()
     {
-        //Calculate random point in range
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        walkPoint = new Vector3(
+            transform.position.x + randomX,
+            transform.position.y,
+            transform.position.z + randomZ
+        );
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 3f, whatIsGround))
             walkPointSet = true;
     }
+
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        if (agent.enabled)
+            agent.SetDestination(player.position);
     }
+
     private void AttackPlayer()
     {
-        //Make sure enemy does not move
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
+        if (!alreadyAttacked && agent.enabled)
         {
-            if (GetComponent<Rigidbody>())
-            {
-                GetComponent<Rigidbody>().isKinematic = false;
-            }
             alreadyAttacked = true;
 
-            // Stop NavMeshAgent so physics can take over
-            agent.enabled = false;
+            agent.enabled = false;   // Turn off navmesh movement
+            rb.isKinematic = false;  // Enable physics
 
-            transform.LookAt(player);
-
-            // Calculate jump direction
+            // Calculate jump velocity
             Vector3 direction = (player.position - transform.position).normalized;
             Vector3 jumpVector = direction * forwardForce + Vector3.up * jumpForce;
 
-            // Apply jump force
             rb.AddForce(jumpVector, ForceMode.Impulse);
 
-            // Reset after delay
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
+
     private void ResetAttack()
     {
-        alreadyAttacked = false;
-        // Re-enable agent after landing delay
-        StartCoroutine(ReenableAgentAfterDelay(1f));
+        StartCoroutine(ReenableAgent());
     }
-    private IEnumerator ReenableAgentAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
 
-        // Wait until the enemy is grounded and near a NavMesh surface
-        yield return new WaitUntil(() => IsGrounded() && IsOnNavMesh());
+    private IEnumerator ReenableAgent()
+    {
+        // Wait until grounded on actual ground (not another enemy)
+        yield return new WaitUntil(() => IsGroundedProper());
+
+        // Wait a moment for stability
+        yield return new WaitForSeconds(0.25f);
+
+        rb.isKinematic = true;
+
+        // Try to snap to nearest navmesh point
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+        }
 
         agent.enabled = true;
-        if (GetComponent<Rigidbody>())
-        {
-            GetComponent<Rigidbody>().isKinematic = true;
-        }
+        alreadyAttacked = false;
     }
-    private bool IsGrounded() =>
-        Physics.Raycast(transform.position, Vector3.down, 1.2f, whatIsGround);
 
-    private bool IsOnNavMesh()
+    private bool IsGroundedProper()
     {
-        NavMeshHit hit;
-        return NavMesh.SamplePosition(transform.position, out hit, 1.0f, NavMesh.AllAreas);
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f, whatIsGround))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if (health <= 0)
+            Invoke(nameof(DestroyEnemy), 0.5f);
     }
 
     private void DestroyEnemy()
     {
         Destroy(gameObject);
     }
-
-
 }
