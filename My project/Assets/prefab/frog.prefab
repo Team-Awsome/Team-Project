@@ -127,17 +127,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3019362863821049997}
   player: {fileID: 0}
-  health: 120
+  health: 3
+  drop: {fileID: 3892018145407768537, guid: a271a6f8b9d913d4bb9147a9c8556e9c, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  Spawnpoint: {fileID: 7421366517811592715}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 2.5
-  jumpForce: 7
+  jumpForce: 6.5
   forwardForce: 8
   sightRange: 20
   attackRange: 12
@@ -188,7 +190,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

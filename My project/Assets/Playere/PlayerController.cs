@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     public int maxhealth = 20;
 
     public bool isSprinting = false;
+    public bool isSlashing = false;
+    public Transform Spawnpoint1;
+    public GameObject Sword;
 
     public void Start()
     {
@@ -129,6 +132,15 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    public void Slash()
+    {
+        if (!isSlashing)
+        {
+            GameObject swordObj = Instantiate(Sword, Spawnpoint1.position, Spawnpoint1.rotation);
+            swordObj.transform.SetParent(Spawnpoint1); // <<<<<< IMPORTANT
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "KillZone")
@@ -157,10 +169,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 1;
         }
-        if (collision.gameObject.tag == "Slash")
-        {
-            health -= 1;
-        }
+        
 
         if (collision.gameObject.tag == "Enemy")
         {

@@ -7,8 +7,9 @@ public class enemy1 : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public float health;
-
+    public GameObject drop;
     public LayerMask whatIsGround, whatIsPlayer;
+    public Transform Spawnpoint;
 
     //Patrolling
     public Vector3 walkPoint;
@@ -20,7 +21,7 @@ public class enemy1 : MonoBehaviour
     bool alreadyAttacked;
 
     //Jump Attack
-    public float jumpForce = 7f;
+    public float jumpForce = 6.5f;
     public float forwardForce = 8f;
 
     //States
@@ -160,6 +161,18 @@ public class enemy1 : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        Instantiate(drop, Spawnpoint.position, Spawnpoint.rotation);
         Destroy(gameObject);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Attack1"))
+        {
+            TakeDamage(3);
+          
+        }
+    }
+
+
+
 }
