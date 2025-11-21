@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2738041553212887192}
   m_Layer: 8
   m_Name: frog
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3019362863821049997}
   player: {fileID: 0}
-  health: 3
+  health: 20
   drop: {fileID: 3892018145407768537, guid: a271a6f8b9d913d4bb9147a9c8556e9c, type: 3}
   whatIsGround:
     serializedVersion: 2
@@ -136,6 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   Spawnpoint: {fileID: 7421366517811592715}
+  damagetakenSpeaker: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 2.5

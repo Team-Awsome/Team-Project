@@ -10,7 +10,7 @@ public class enemy1 : MonoBehaviour
     public GameObject drop;
     public LayerMask whatIsGround, whatIsPlayer;
     public Transform Spawnpoint;
-
+    public AudioSource damagetakenSpeaker;
     //Patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -168,7 +168,8 @@ public class enemy1 : MonoBehaviour
     {
         if (other.CompareTag("Attack1"))
         {
-            TakeDamage(3);
+            damagetakenSpeaker.Play();
+            TakeDamage(1);
           
         }
     }

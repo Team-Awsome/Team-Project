@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         if (!isSlashing)
         {
             GameObject swordObj = Instantiate(Sword, Spawnpoint1.position, Spawnpoint1.rotation);
-            swordObj.transform.SetParent(Spawnpoint1); // <<<<<< IMPORTANT
+            swordObj.transform.SetParent(Spawnpoint1); 
         }
     }
 
@@ -175,6 +175,11 @@ public class PlayerController : MonoBehaviour
         {
             health--;
         }
+        
+        if (collision.gameObject.tag == "Enemy2")
+        {
+            health -= 6;
+        }
     }
     private void OnCollisionStay(Collision collision) //enter is once every collison, stay is constant while collision is true
     {
@@ -183,10 +188,7 @@ public class PlayerController : MonoBehaviour
             health--;
         }
 
-        if (collision.gameObject.tag == "Enemy2")
-        {
-            health--;
-        }
+        
     }
 
 

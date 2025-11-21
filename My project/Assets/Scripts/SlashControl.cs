@@ -25,4 +25,5 @@ public class SwordControl : MonoBehaviour
         Destroy(gameObject);
 
     }
+   
 }
