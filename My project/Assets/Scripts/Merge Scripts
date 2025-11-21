@@ -1,0 +1,4 @@
+git checkout <Main> -- <My project/Assets/Scripts>
+git add <My project/Assets/Scripts>
+git commit -m "Copied script file from <CodingStuff> to <main>"
+git push origin <main>
