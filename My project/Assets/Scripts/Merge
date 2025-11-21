@@ -1,4 +1,0 @@
-git pull origin CodingStuff
-git checkout main
-git merge CodingStuff
-git push -u origin main
