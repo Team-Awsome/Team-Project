@@ -15,6 +15,7 @@ TagManager:
   - Sword
   - Attack1
   - Enemy2
+  - Enemy3
   layers:
   - Default
   - TransparentFX

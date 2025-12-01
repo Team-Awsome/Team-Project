@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3019362863821049997}
   - component: {fileID: 2738041553212887192}
   m_Layer: 8
-  m_Name: AngryFrog
+  m_Name: Alligator
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   Spawnpoint: {fileID: 7421366517811592715}
+  damagetakenSpeaker: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 1

@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,11 +11,13 @@ public class PlayerController : MonoBehaviour
     Ray jumpRay;
     Ray interactRay;
     RaycastHit interactHit;
+    GameObject pickupObj;
     GameObject gameoverscreen;
     public PlayerInput input;
     float verticalMove;
     float horizontalMove;
     public AudioSource deathspeaker;
+
 
     public float speed = 11f;
     public float jumpHeight = 10f;
@@ -24,10 +27,14 @@ public class PlayerController : MonoBehaviour
     public int health = 20;
     public int maxhealth = 20;
 
+    public bool attacking = false;
     public bool isSprinting = false;
     public bool isSlashing = false;
+    
+    
     public Transform Spawnpoint1;
     public GameObject Sword;
+    public GameObject bullet;
 
     public void Start()
     {
@@ -49,7 +56,8 @@ public class PlayerController : MonoBehaviour
         interactRay = new Ray(transform.position, transform.forward);
         rb = GetComponent<Rigidbody>();
         playerCam = Camera.main;
-       
+      
+
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -100,7 +108,17 @@ public class PlayerController : MonoBehaviour
         interactRay.origin = playerCam.transform.position;
         interactRay.direction = playerCam.transform.forward;
 
+        if (Physics.Raycast(interactRay, out interactHit, interactDistance))
+        {
+            if (interactHit.collider.gameObject.tag == "weapon")
+            {
+                pickupObj = interactHit.collider.gameObject;
+            }
+        }
+        else
+            pickupObj = null;
 
+       
 
         rb.linearVelocity = (temp.x * transform.forward) +
                             (temp.y * transform.up) +
@@ -121,7 +139,8 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
     }
 
-   
+    
+    
     public void Sprint()
     {
 
@@ -140,6 +159,7 @@ public class PlayerController : MonoBehaviour
             swordObj.transform.SetParent(Spawnpoint1); 
         }
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -178,7 +198,15 @@ public class PlayerController : MonoBehaviour
         
         if (collision.gameObject.tag == "Enemy2")
         {
-            health -= 6;
+            health -= 2;
+        }
+        
+        if (collision.gameObject.tag == "Enemy3")
+        {
+            health -= 1;
+            
+            StartCoroutine(Poison());
+            
         }
     }
     private void OnCollisionStay(Collision collision) //enter is once every collison, stay is constant while collision is true
@@ -191,5 +219,20 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    IEnumerator Poison()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        health -= 3;
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        health -= 3;
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        health -= 3;
+       
 
+    }
 }
