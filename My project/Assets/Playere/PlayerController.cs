@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     Ray jumpRay;
     Ray interactRay;
     RaycastHit interactHit;
-    GameObject pickupObj;
     GameObject gameoverscreen;
     public PlayerInput input;
     float verticalMove;
@@ -30,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public bool attacking = false;
     public bool isSprinting = false;
     public bool isSlashing = false;
+    public bool isShooting = false;
     
     
     public Transform Spawnpoint1;
@@ -108,16 +108,7 @@ public class PlayerController : MonoBehaviour
         interactRay.origin = playerCam.transform.position;
         interactRay.direction = playerCam.transform.forward;
 
-        if (Physics.Raycast(interactRay, out interactHit, interactDistance))
-        {
-            if (interactHit.collider.gameObject.tag == "weapon")
-            {
-                pickupObj = interactHit.collider.gameObject;
-            }
-        }
-        else
-            pickupObj = null;
-
+        
        
 
         rb.linearVelocity = (temp.x * transform.forward) +
@@ -157,6 +148,16 @@ public class PlayerController : MonoBehaviour
         {
             GameObject swordObj = Instantiate(Sword, Spawnpoint1.position, Spawnpoint1.rotation);
             swordObj.transform.SetParent(Spawnpoint1); 
+        }
+    }
+    public void Shoot()
+    {
+        //if (!isShooting)
+        {
+           
+           // Rigidbody rb = Instantiate(bullet, Spawnpoint1.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+           // rb.AddForce(transform.up * 8f, ForceMode.Impulse);
         }
     }
     
