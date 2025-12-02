@@ -172,6 +172,12 @@ public class enemy1 : MonoBehaviour
             TakeDamage(1);
           
         }
+        if (other.CompareTag("Arrow1"))
+        {
+            damagetakenSpeaker.Play();
+            TakeDamage(1);
+          
+        }
     }
 
 

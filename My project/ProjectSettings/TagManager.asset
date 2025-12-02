@@ -16,6 +16,7 @@ TagManager:
   - Attack1
   - Enemy2
   - Enemy3
+  - Arrow1
   layers:
   - Default
   - TransparentFX
