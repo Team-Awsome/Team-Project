@@ -67960,7 +67960,7 @@ MonoBehaviour:
   deathspeaker: {fileID: 172995356557890769}
   firingDirection: {fileID: 848802552}
   speed: 11
-  jumpHeight: 10
+  jumpHeight: 0
   interactDistance: 1
   jumpRayDistance: 1.1
   health: 20
