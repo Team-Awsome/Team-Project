@@ -151,7 +151,7 @@ public class enemy1 : MonoBehaviour
         return false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
 
@@ -169,13 +169,13 @@ public class enemy1 : MonoBehaviour
         if (other.CompareTag("Attack1"))
         {
             damagetakenSpeaker.Play();
-            TakeDamage(1);
+            TakeDamage(0.5f);
           
         }
         if (other.CompareTag("Arrow1"))
         {
             damagetakenSpeaker.Play();
-            TakeDamage(1);
+            TakeDamage(0.5f);
           
         }
     }

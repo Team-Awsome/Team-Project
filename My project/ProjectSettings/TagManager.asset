@@ -17,6 +17,7 @@ TagManager:
   - Enemy2
   - Enemy3
   - Arrow1
+  - ui_selection
   layers:
   - Default
   - TransparentFX

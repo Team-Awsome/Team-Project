@@ -1,8 +1,9 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using System.Collections;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     Ray interactRay;
     RaycastHit interactHit;
     GameObject gameoverscreen;
+    GameObject Selection;
     public PlayerInput input;
     float verticalMove;
     float horizontalMove;
@@ -30,7 +32,9 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting = false;
     public bool isSlashing = false;
     public bool isShooting = false;
-    
+    public static bool SwordF = false;
+    public static bool BowF = false;
+
     
     public Transform Spawnpoint1;
     public Transform Spawnpoint2;
@@ -39,18 +43,41 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 1)
+        if (SceneManager.GetActiveScene().buildIndex >= 2)
         {
             gameoverscreen = GameObject.FindGameObjectWithTag("ui_gameOver");
 
             gameoverscreen.SetActive(false);
 
+
             Time.timeScale = 1;
-            
+
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             deathspeaker = GetComponent<AudioSource>();
+
+            
         }
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            
+            Selection = GameObject.FindGameObjectWithTag("ui_selection");
+
+
+            Selection.SetActive(true);
+            Time.timeScale = 0;
+
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            deathspeaker = GetComponent<AudioSource>();
+
+            
+        }
+       
+
+       
 
         input = GetComponent<PlayerInput>();
         jumpRay = new Ray(transform.position, -transform.up);
@@ -131,8 +158,24 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
     }
 
-    
-    
+
+    public void BowS()
+    {
+        BowF = true;       // Use bow
+        SwordF = false;    // Disable sword
+        
+       
+        SceneManager.LoadScene(2);
+    }
+
+    public void SwordS()
+    {
+        SwordF = true;     // Use sword
+        BowF = false;      // Disable bow
+        
+        SceneManager.LoadScene(2);
+
+    }
     public void Sprint()
     {
 
@@ -143,17 +186,30 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    
     public void Slash()
     {
-        //if (!isSlashing)
+        if (!isSlashing && SwordF)
         {
-            //GameObject swordObj = Instantiate(Sword, Spawnpoint1.position, Spawnpoint1.rotation);
-            //swordObj.transform.SetParent(Spawnpoint1); 
+            StartCoroutine(Slashh());
+             
         }
+    }
+    IEnumerator Slashh()
+    {
+        yield return new WaitForSeconds(0.25f);
+        
+        isSlashing = true;
+        
+        GameObject swordObj = Instantiate(Sword, Spawnpoint1.position, Spawnpoint1.rotation);
+        swordObj.transform.SetParent(Spawnpoint1);
+
+        isSlashing = false;
     }
     public void Shoot()
     {
-        if (!isShooting)
+        if (!isShooting && BowF)
         {
             StartCoroutine(Shoott());
             
@@ -163,10 +219,10 @@ public class PlayerController : MonoBehaviour
     {
         isShooting = true;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
 
         Rigidbody rb = Instantiate(bullet, Spawnpoint2.position, Spawnpoint2.rotation).GetComponent<Rigidbody>();
-        rb.AddForce(Spawnpoint2.forward * 32f, ForceMode.Impulse);
+        rb.AddForce(Spawnpoint2.forward * 44f, ForceMode.Impulse);
         rb.AddForce(Spawnpoint2.up * 2.5f, ForceMode.Impulse);
 
         isShooting = false;

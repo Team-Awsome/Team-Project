@@ -5,6 +5,8 @@ using TMPro;
 using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
+    
+
     PlayerController player;
 
     GameObject pauseMenu;
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 1)
+        if (SceneManager.GetActiveScene().buildIndex >= 2)
         {
             
 
@@ -35,9 +37,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 1)
+        if (SceneManager.GetActiveScene().buildIndex >= 2)
         {
-            healthBar.fillAmount = (float)player.health / (float)player.maxhealth;
+           healthBar.fillAmount = (float)player.health / (float)player.maxhealth;
 
             
         }
@@ -93,5 +95,6 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
+   
 }

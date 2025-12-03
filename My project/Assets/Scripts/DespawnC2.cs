@@ -20,7 +20,7 @@ public class BowControl : MonoBehaviour
     }
     IEnumerator Despawn()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.7f);
 
         Destroy(gameObject);
 
