@@ -2,13 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemy1 : MonoBehaviour
+public class enemy3 : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
     public float health;
     public GameObject drop;
-    public GameObject spawn;
     public LayerMask whatIsGround, whatIsPlayer;
     public Transform Spawnpoint;
     public AudioSource damagetakenSpeaker;
@@ -112,8 +111,6 @@ public class enemy1 : MonoBehaviour
 
             rb.AddForce(jumpVector, ForceMode.Impulse);
 
-
-            Instantiate(spawn, Spawnpoint.position, Spawnpoint.rotation);
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }

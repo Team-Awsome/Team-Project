@@ -18,6 +18,7 @@ TagManager:
   - Enemy3
   - Arrow1
   - ui_selection
+  - HomingProj
   layers:
   - Default
   - TransparentFX

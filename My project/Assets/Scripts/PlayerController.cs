@@ -179,9 +179,9 @@ public class PlayerController : MonoBehaviour
     public void Sprint()
     {
 
-        if (!isSprinting)
+        //if (!isSprinting)
         {
-            speed = 23;
+          //  speed = 23;
 
         }
 
@@ -267,7 +267,12 @@ public class PlayerController : MonoBehaviour
         {
             health -= 2;
         }
-        
+
+        if (collision.gameObject.tag == "HomingProj")
+        {
+            health--;
+        }
+
         if (collision.gameObject.tag == "Enemy3")
         {
             health -= 1;
@@ -282,6 +287,8 @@ public class PlayerController : MonoBehaviour
         {
             health--;
         }
+        
+        
 
         
     }

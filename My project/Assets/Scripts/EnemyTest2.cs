@@ -9,6 +9,8 @@ public class enemy2 : MonoBehaviour
     public float health;
     
     public float SpeedUp;
+    
+    public float SlowDown;
 
     public Transform Spawnpoint;
     
@@ -56,7 +58,7 @@ public class enemy2 : MonoBehaviour
 
         if (walkPointSet)
             agent.SetDestination(walkPoint);
-
+        agent.speed = SlowDown;
         Vector3 distanceToWalkpoint = transform.position - walkPoint;
 
         //Walkpoint reached
