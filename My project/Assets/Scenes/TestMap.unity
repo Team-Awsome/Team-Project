@@ -54640,7 +54640,7 @@ MonoBehaviour:
   damagetakenSpeaker: {fileID: 5844764124744000346}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 22
-  timeBetweenAttacks: 7
+  timeBetweenAttacks: 3.5
   jumpForce: 6.5
   forwardForce: 8
   sightRange: 44
@@ -58986,10 +58986,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 9292d1c37ab59f749a9d784428584d2e, type: 3}
+  m_Resource: {fileID: 8300000, guid: a5ecf6e96c8a5124598f4449a93db9b4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.521
-  m_Pitch: 1
+  m_Volume: 1
+  m_Pitch: -0.68
   Loop: 1
   Mute: 0
   Spatialize: 0
