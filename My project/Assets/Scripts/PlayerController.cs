@@ -267,6 +267,10 @@ public class PlayerController : MonoBehaviour
         {
             health -= 2;
         }
+        if (collision.gameObject.tag == "Ink")
+        {
+            health -= 5;
+        }
 
         if (collision.gameObject.tag == "HomingProj")
         {
