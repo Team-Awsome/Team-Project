@@ -9375,6 +9375,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290352958}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &292534751 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1117507895411566663, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
+  m_PrefabInstance: {fileID: 749917737}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &293030686
 GameObject:
   m_ObjectHideFlags: 0
@@ -24505,10 +24510,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9ac343ce714402142b83b9ac42d4f61b, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1580456404889836510, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 755745106502367863, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1810467600}
   m_SourcePrefab: {fileID: 100100000, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
 --- !u!4 &749917738 stripped
 Transform:
@@ -42666,6 +42675,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408425716}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1408835035 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4410680146033426112, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
+  m_PrefabInstance: {fileID: 749917737}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1410302966
 GameObject:
   m_ObjectHideFlags: 0
@@ -54587,6 +54601,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800661698}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1810467593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 755745106502367863, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
+  m_PrefabInstance: {fileID: 749917737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1810467596 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 4611627323863686564, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
+  m_PrefabInstance: {fileID: 749917737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1810467600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810467593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d173beb6d1ad191479b1d8c0d19fb58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1810467596}
+  player: {fileID: 172995356557890768}
+  health: 177
+  drop: {fileID: 3892018145407768537, guid: a271a6f8b9d913d4bb9147a9c8556e9c, type: 3}
+  attack: {fileID: 226205705632441336, guid: d2b39b4155591aa4589e197d8b6fe496, type: 3}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  Spawnpoint: {fileID: 749917738}
+  Spawnpoint1: {fileID: 292534751}
+  Spawnpoint2: {fileID: 1408835035}
+  damagetakenSpeaker: {fileID: 5844764124744000346}
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 22
+  timeBetweenAttacks: 7
+  jumpForce: 6.5
+  forwardForce: 8
+  sightRange: 44
+  attackRange: 22
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1 &1810742427
 GameObject:
   m_ObjectHideFlags: 0
