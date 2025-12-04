@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,8 +9,11 @@ public class enemy3 : MonoBehaviour
     public Transform player;
     public float health;
     public GameObject drop;
+    public GameObject attack;
     public LayerMask whatIsGround, whatIsPlayer;
     public Transform Spawnpoint;
+    public Transform Spawnpoint1;
+    public Transform Spawnpoint2;
     public AudioSource damagetakenSpeaker;
     //Patrolling
     public Vector3 walkPoint;
@@ -99,17 +103,13 @@ public class enemy3 : MonoBehaviour
         if (!alreadyAttacked && agent.enabled)
         {
             alreadyAttacked = true;
-            
 
-            
             agent.enabled = false;   // Turn off navmesh movement
-            rb.isKinematic = false;  // Enable physics
 
-            // Calculate jump velocity
-            Vector3 direction = (player.position - transform.position).normalized;
-            Vector3 jumpVector = direction * forwardForce + Vector3.up * jumpForce;
+            StartCoroutine(Laser());
 
-            rb.AddForce(jumpVector, ForceMode.Impulse);
+
+
 
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -120,6 +120,26 @@ public class enemy3 : MonoBehaviour
         StartCoroutine(ReenableAgent());
     }
 
+    IEnumerator Laser()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Instantiate(attack, Spawnpoint1.position, Spawnpoint.rotation);
+
+        yield return new WaitForSeconds(1f);
+
+        Instantiate(attack, Spawnpoint2.position, Spawnpoint.rotation);
+       
+        yield return new WaitForSeconds(0.5f);
+
+        Instantiate(attack, Spawnpoint1.position, Spawnpoint.rotation);
+        
+        yield return new WaitForSeconds(1f);
+
+        Instantiate(attack, Spawnpoint2.position, Spawnpoint.rotation);
+
+        StartCoroutine(ReenableAgentAttack());
+    }
     private IEnumerator ReenableAgent()
     {
         // Wait until grounded on actual ground (not another enemy)
@@ -139,6 +159,26 @@ public class enemy3 : MonoBehaviour
 
         agent.enabled = true;
         alreadyAttacked = false;
+    }
+    private IEnumerator ReenableAgentAttack()
+    {
+        // Wait until grounded on actual ground (not another enemy)
+        yield return new WaitUntil(() => IsGroundedProper());
+
+        // Wait a moment for stability
+        yield return new WaitForSeconds(0.25f);
+
+        rb.isKinematic = true;
+
+        // Try to snap to nearest navmesh point
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+        }
+
+        agent.enabled = true;
+        alreadyAttacked = true;
     }
 
     private bool IsGroundedProper()
