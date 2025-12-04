@@ -16,7 +16,7 @@ public class enemy1 : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-
+    private Coroutine spawnRoutine;
     //Attack
     public float timeBetweenAttacks = 2f;
     bool alreadyAttacked;
@@ -34,6 +34,8 @@ public class enemy1 : MonoBehaviour
 
     private void Awake()
     {
+        
+
         player = GameObject.FindGameObjectWithTag("player")?.transform;
 
         agent = GetComponent<NavMeshAgent>();
@@ -45,6 +47,8 @@ public class enemy1 : MonoBehaviour
         // Make sure Rigidbody doesn’t rotate (keeps physics stable)
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
+      
+    
 
     private void Update()
     {
@@ -112,12 +116,22 @@ public class enemy1 : MonoBehaviour
 
             rb.AddForce(jumpVector, ForceMode.Impulse);
 
+            if (spawnRoutine == null)
+                spawnRoutine = StartCoroutine(Spawn1());
 
-            Instantiate(spawn, Spawnpoint.position, Spawnpoint.rotation);
+
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
+    private IEnumerator Spawn1()
+    {
+        yield return new WaitForSeconds(15f);
+
+        Instantiate(spawn, Spawnpoint.position, Spawnpoint.rotation);
+        
+        spawnRoutine = null;
+    }
     private void ResetAttack()
     {
         StartCoroutine(ReenableAgent());
