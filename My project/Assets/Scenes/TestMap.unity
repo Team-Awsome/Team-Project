@@ -54640,7 +54640,7 @@ MonoBehaviour:
   damagetakenSpeaker: {fileID: 5844764124744000346}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 22
-  timeBetweenAttacks: 3.5
+  timeBetweenAttacks: 4.5
   jumpForce: 6.5
   forwardForce: 8
   sightRange: 44

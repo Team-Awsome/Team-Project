@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 20
-  DespawnTime: 10
+  DespawnTime: 5
   target: {fileID: 0}
