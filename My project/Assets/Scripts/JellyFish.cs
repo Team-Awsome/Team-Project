@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 public class enemy2 : MonoBehaviour
@@ -34,6 +35,32 @@ public class enemy2 : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
+    private IEnumerator dropper()
+    {
+        int random = Random.Range(1, 100);
+
+        Debug.Log("RANDOM WAS  " + random);
+
+        if (random >= 80)
+        {
+            Debug.Log("GOOD LUCK");
+            Instantiate(drop, Spawnpoint.position, Spawnpoint.rotation);
+            Destroy(gameObject);
+        }
+
+        if (random < 80)
+        {
+            Debug.Log("BAD LUCK");
+            Destroy(gameObject);
+        }
+
+
+        yield return null;
+
+
+
+    }
 
     private void Awake()
     {
@@ -114,8 +141,7 @@ public class enemy2 : MonoBehaviour
 
     private void DestroyEnemy()
     {
-        Instantiate(drop, Spawnpoint.position, Spawnpoint.rotation);
-        Destroy(gameObject);
+        StartCoroutine(dropper());
     }
     private void OnTriggerEnter(Collider other)
     {

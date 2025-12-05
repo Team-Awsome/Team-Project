@@ -21,6 +21,7 @@ TagManager:
   - HomingProj
   - Ink
   - ui_level
+  - drop1
   layers:
   - Default
   - TransparentFX
