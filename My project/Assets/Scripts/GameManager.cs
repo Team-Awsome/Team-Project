@@ -5,8 +5,8 @@ using TMPro;
 using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
-    
 
+    TextMeshProUGUI LV;
     PlayerController player;
 
     GameObject pauseMenu;
@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
 
             player = GameObject.FindGameObjectWithTag("player").GetComponent<PlayerController>();
 
-            
+            LV = GameObject.FindGameObjectWithTag("ui_level").GetComponent <TextMeshProUGUI>();
+
+
             pauseMenu = GameObject.FindGameObjectWithTag("ui_pause");
 
             pauseMenu.SetActive(false);
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
         {
            healthBar.fillAmount = (float)player.health / (float)player.maxhealth;
 
-            
+            LV.text = "LV: " + player.level;
         }
     }
 

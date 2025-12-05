@@ -38691,8 +38691,8 @@ GameObject:
   - component: {fileID: 1263541938}
   - component: {fileID: 1263541937}
   m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_Name: LV
+  m_TagString: ui_level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38736,7 +38736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " LV: 1 \n"
+  m_text: " LV: \n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -66699,7 +66699,7 @@ PrefabInstance:
     - {fileID: 2105129306767607728, guid: f573a8bfd19d09c419fcd2d553e1a4ed, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3952753592598689327, guid: f573a8bfd19d09c419fcd2d553e1a4ed, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 1263541936}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f573a8bfd19d09c419fcd2d553e1a4ed, type: 3}
