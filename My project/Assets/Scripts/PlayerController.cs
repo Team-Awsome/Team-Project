@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 10f;
     public float interactDistance = 1f;
     public float jumpRayDistance = 1.1f;
+    public float level = 1f; 
+    public float xp = 1f; 
 
     public int health = 20;
     public int maxhealth = 20;
@@ -112,6 +114,47 @@ public class PlayerController : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+     //LEVELS
+        if (level >= 2f)
+        {
+            maxhealth = 25;
+        }
+       
+        if (level >= 3f)
+        {
+            maxhealth = 30;
+        }
+       
+        if (level >= 4f)
+        {
+            maxhealth = 40;
+        }
+       
+        if (level >= 5f)
+        {
+            maxhealth = 50;
+        }
+       
+    //XP  
+        if (xp >= 30f)
+        {
+            level = 2f;
+        }
+       
+        if (xp >= 100f)
+        {
+            level = 3f;
+        }
+       
+        if (xp >= 300f)
+        {
+            level = 4f;
+        }
+       
+        if (xp >= 1000f)
+        {
+            level = 5f;
         }
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -236,6 +279,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
+
         if ((other.tag == "Health") && (health < maxhealth))
         {
             health += 3;    // or health ++; for one
@@ -248,16 +292,53 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         }
-
+       
+        //Level
+        if (other.gameObject.tag == "drop1")
+        {
+            xp += 10f;
+            Destroy(other.gameObject);
+        }
+       
+        if (other.gameObject.tag == "drop2")
+        {
+            xp += 15f;
+            Destroy(other.gameObject);
+        }
+       
+        if (other.gameObject.tag == "drop3")
+        {
+            xp += 20f;
+            Destroy(other.gameObject);
+        }
+       
+        if (other.gameObject.tag == "drop4")
+        {
+            xp += 30f;
+            Destroy(other.gameObject);
+        }
+        
+        if (other.gameObject.tag == "drop5")
+        {
+            xp += 50f;
+            Destroy(other.gameObject);
+        }
+        
+        if (other.gameObject.tag == "drop6")
+        {
+            xp += 100f;
+            Destroy(other.gameObject);
+        }
+        
     }
     private void OnCollisionEnter(Collision collision) //enter is once every collison, stay is constant while collision is true
     {
+     //Damage
         if (collision.gameObject.tag == "Hazard")
         {
             health -= 1;
         }
         
-
         if (collision.gameObject.tag == "Enemy")
         {
             health--;
@@ -284,6 +365,9 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Poison());
             
         }
+
+    
+
     }
     private void OnCollisionStay(Collision collision) //enter is once every collison, stay is constant while collision is true
     {

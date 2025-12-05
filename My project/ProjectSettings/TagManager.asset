@@ -20,6 +20,7 @@ TagManager:
   - ui_selection
   - HomingProj
   - Ink
+  - ui_level
   layers:
   - Default
   - TransparentFX
