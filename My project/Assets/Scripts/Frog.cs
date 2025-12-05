@@ -16,7 +16,6 @@ public class enemy1 : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-    private Coroutine spawnRoutine;
     //Attack
     public float timeBetweenAttacks = 2f;
     bool alreadyAttacked;
@@ -32,6 +31,7 @@ public class enemy1 : MonoBehaviour
     private Rigidbody rb;
     private int enemyLayer;
 
+    private bool spawnRoutine = true;
     private IEnumerator dropper()
     {
         int random = Random.Range(1, 100);
@@ -59,7 +59,6 @@ public class enemy1 : MonoBehaviour
     }
     private void Awake()
     {
-        
 
         player = GameObject.FindGameObjectWithTag("player")?.transform;
 
@@ -140,10 +139,12 @@ public class enemy1 : MonoBehaviour
             Vector3 jumpVector = direction * forwardForce + Vector3.up * jumpForce;
 
             rb.AddForce(jumpVector, ForceMode.Impulse);
+                   
 
-            if (spawnRoutine == null)
-                spawnRoutine = StartCoroutine(Spawn1());
-
+            if (spawnRoutine != false)
+            {
+                StartCoroutine(Spawn1());
+            }
 
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -151,11 +152,15 @@ public class enemy1 : MonoBehaviour
 
     private IEnumerator Spawn1()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(2f);
 
         Instantiate(spawn, Spawnpoint.position, Spawnpoint.rotation);
         
-        spawnRoutine = null;
+        spawnRoutine = false;
+
+        yield return new WaitForSeconds(15f);
+
+        spawnRoutine = true;
     }
     private void ResetAttack()
     {

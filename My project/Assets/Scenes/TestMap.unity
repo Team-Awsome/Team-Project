@@ -24369,7 +24369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 755745106502367863, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1117507895411566663, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55358,7 +55358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6396912138696530960, guid: b69e908a8d845d84b98e871117a9fd99, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7113644484636965030, guid: b69e908a8d845d84b98e871117a9fd99, type: 3}
       propertyPath: spawn
@@ -66757,12 +66757,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7781351444806328186, guid: dbf61a4bf10eec54c8790b9c5e6d3596, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9189064366825905450, guid: dbf61a4bf10eec54c8790b9c5e6d3596, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 172995356557890768}
+    - target: {fileID: 9189064366825905450, guid: dbf61a4bf10eec54c8790b9c5e6d3596, type: 3}
+      propertyPath: damagetakenSpeaker
+      value: 
+      objectReference: {fileID: 5844764124744000346}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -67126,7 +67130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 755745106502367863, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1580456404889836510, guid: 6a5209a05d15d6f4c99cfef9516afb8d, type: 3}
       propertyPath: player
@@ -67267,7 +67271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6723739517133902543, guid: a46aa0baedefba24dacb71f0c678e98b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
