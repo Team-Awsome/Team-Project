@@ -29,6 +29,8 @@ TagManager:
   - drop5
   - drop6
   - Attack1
+  - Attack
+  - Proceed
   layers:
   - Default
   - TransparentFX

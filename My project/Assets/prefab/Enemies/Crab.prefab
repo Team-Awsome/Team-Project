@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4611627323863686564}
   player: {fileID: 0}
-  health: 11
+  health: 50
   drop: {fileID: 3892018145407768537, guid: a271a6f8b9d913d4bb9147a9c8556e9c, type: 3}
   attack: {fileID: 226205705632441336, guid: c2a353bb7a282a549a125df752bd33ef, type: 3}
   whatIsGround:

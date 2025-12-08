@@ -300,10 +300,14 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject); //or other.gameObject.SetActive(false);
 
         }
-        if (other.tag == "exit")
+        if (other.tag == "Proceed")
         {
+            Time.timeScale = 0;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            winscreen.SetActive(true);
 
         }
        
@@ -355,12 +359,12 @@ public class PlayerController : MonoBehaviour
         
         if (collision.gameObject.tag == "Enemy")
         {
-            health--;
+            health -= 2;
         }
         
         if (collision.gameObject.tag == "Enemy2")
         {
-            health -= 2;
+            health -= 3;
         }
         if (collision.gameObject.tag == "Ink")
         {

@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 424001307888650038}
   player: {fileID: 0}
-  health: 12
+  health: 14
   SpeedUp: 10
   SlowDown: 5
   Spawnpoint: {fileID: 4303779394404522913}

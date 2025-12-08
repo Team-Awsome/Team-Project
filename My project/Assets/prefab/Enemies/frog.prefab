@@ -127,8 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3019362863821049997}
   player: {fileID: 0}
-  health: 6
+  health: 32
   drop: {fileID: 3892018145407768537, guid: a271a6f8b9d913d4bb9147a9c8556e9c, type: 3}
+  spawn: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
