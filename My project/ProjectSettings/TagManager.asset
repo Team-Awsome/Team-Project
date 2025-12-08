@@ -22,6 +22,7 @@ TagManager:
   - Ink
   - ui_level
   - drop1
+  - dialogue_ui
   layers:
   - Default
   - TransparentFX
