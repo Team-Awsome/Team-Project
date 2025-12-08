@@ -27,7 +27,7 @@ public class enemy2 : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-
+    PlayerController playerController;
     //Attack
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -35,6 +35,7 @@ public class enemy2 : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
 
     private IEnumerator dropper()
     {
@@ -64,6 +65,7 @@ public class enemy2 : MonoBehaviour
 
     private void Awake()
     {
+        playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -131,7 +133,7 @@ public class enemy2 : MonoBehaviour
         alreadyAttacked = false;
     }
 
-     public void TakeDamage(int damage)
+     public void TakeDamage(float damage)
     {
         health -= damage;
 
@@ -148,8 +150,8 @@ public class enemy2 : MonoBehaviour
         if (other.CompareTag("Attack1"))
         {
             damagetakenSpeaker.Play();
-            TakeDamage(1);
-          
+            TakeDamage(playerController.damage);
+
         }
     }
 

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     Ray interactRay;
     RaycastHit interactHit;
     GameObject gameoverscreen;
+    GameObject winscreen;
     GameObject Selection;
     public PlayerInput input;
     float verticalMove;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public float jumpRayDistance = 1.1f;
     public float level = 1f; 
     public float xp = 1f; 
+    public float damage = 0.5f; 
 
     public int health = 20;
     public int maxhealth = 20;
@@ -50,6 +52,10 @@ public class PlayerController : MonoBehaviour
             gameoverscreen = GameObject.FindGameObjectWithTag("ui_gameOver");
 
             gameoverscreen.SetActive(false);
+            
+            winscreen = GameObject.FindGameObjectWithTag("WIN");
+
+            winscreen.SetActive(false);
 
 
             Time.timeScale = 1;
@@ -118,41 +124,49 @@ public class PlayerController : MonoBehaviour
      //LEVELS
         if (level >= 2f)
         {
-            maxhealth = 25;
+            health += 100;
+            maxhealth = 45;
+            damage = 1f;
         }
        
         if (level >= 3f)
         {
-            maxhealth = 30;
+            health += 100;
+            maxhealth = 70;
+            damage = 1.5f;
         }
        
         if (level >= 4f)
         {
-            maxhealth = 40;
+            health += 100;
+            maxhealth = 95;
+            damage = 2f;
         }
        
         if (level >= 5f)
         {
-            maxhealth = 50;
+            health += 120;
+            maxhealth = 120;
+            damage = 3f;
         }
        
     //XP  
-        if (xp >= 30f)
+        if (xp >= 50f)
         {
             level = 2f;
         }
        
-        if (xp >= 100f)
+        if (xp >= 200f)
         {
             level = 3f;
         }
        
-        if (xp >= 300f)
+        if (xp >= 600f)
         {
             level = 4f;
         }
        
-        if (xp >= 1000f)
+        if (xp >= 1250f)
         {
             level = 5f;
         }
@@ -302,31 +316,31 @@ public class PlayerController : MonoBehaviour
        
         if (other.gameObject.tag == "drop2")
         {
-            xp += 15f;
+            xp += 25f;
             Destroy(other.gameObject);
         }
        
         if (other.gameObject.tag == "drop3")
         {
-            xp += 20f;
+            xp += 45f;
             Destroy(other.gameObject);
         }
        
         if (other.gameObject.tag == "drop4")
         {
-            xp += 30f;
+            xp += 80f;
             Destroy(other.gameObject);
         }
         
         if (other.gameObject.tag == "drop5")
         {
-            xp += 50f;
+            xp += 100f;
             Destroy(other.gameObject);
         }
         
         if (other.gameObject.tag == "drop6")
         {
-            xp += 100f;
+            xp += 250f;
             Destroy(other.gameObject);
         }
         

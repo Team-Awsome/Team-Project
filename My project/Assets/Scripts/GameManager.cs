@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.VisualScripting;
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
 
@@ -88,6 +89,10 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         LoadLevel(0);
+    }
+    public void PROCEED()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void CurrentLevel()
     {

@@ -35,6 +35,7 @@ public class MiniBoss : MonoBehaviour
     private Rigidbody rb;
     private int enemyLayer;
 
+    PlayerController playerController;
     private IEnumerator dropper()
     {
         int random = Random.Range(1, 100);
@@ -62,6 +63,7 @@ public class MiniBoss : MonoBehaviour
     }
     private void Awake()
     {
+        playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
         player = GameObject.FindGameObjectWithTag("player")?.transform;
 
         agent = GetComponent<NavMeshAgent>();
@@ -235,15 +237,10 @@ public class MiniBoss : MonoBehaviour
         if (other.CompareTag("Attack1"))
         {
             damagetakenSpeaker.Play();
-            TakeDamage(0.5f);
-          
+            TakeDamage(playerController.damage);
+
         }
-        if (other.CompareTag("Arrow1"))
-        {
-            damagetakenSpeaker.Play();
-            TakeDamage(0.5f);
-          
-        }
+        
     }
 
 

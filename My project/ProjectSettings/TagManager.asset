@@ -13,16 +13,22 @@ TagManager:
   - weaponUI
   - ui_health
   - Sword
-  - Attack1
   - Enemy2
   - Enemy3
-  - Arrow1
   - ui_selection
   - HomingProj
   - Ink
   - ui_level
   - drop1
   - dialogue_ui
+  - ENEMIES
+  - WIN
+  - drop2
+  - drop3
+  - drop4
+  - drop5
+  - drop6
+  - Attack1
   layers:
   - Default
   - TransparentFX

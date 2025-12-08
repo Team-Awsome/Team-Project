@@ -19,6 +19,7 @@ public class enemy1 : MonoBehaviour
     //Attack
     public float timeBetweenAttacks = 2f;
     bool alreadyAttacked;
+    PlayerController playerController;
 
     //Jump Attack
     public float jumpForce = 6.5f;
@@ -59,6 +60,7 @@ public class enemy1 : MonoBehaviour
     }
     private void Awake()
     {
+        playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
 
         player = GameObject.FindGameObjectWithTag("player")?.transform;
 
@@ -214,18 +216,15 @@ public class enemy1 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Attack1"))
         {
             damagetakenSpeaker.Play();
-            TakeDamage(0.5f);
-          
+            TakeDamage(playerController.damage);
+
+
         }
-        if (other.CompareTag("Arrow1"))
-        {
-            damagetakenSpeaker.Play();
-            TakeDamage(0.5f);
-          
-        }
+
     }
 
 

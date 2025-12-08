@@ -36,6 +36,7 @@ public class enemy4 : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    PlayerController playerController;
     private IEnumerator dropper()
     {
         int random = Random.Range(1, 100);
@@ -63,6 +64,7 @@ public class enemy4 : MonoBehaviour
     }
     private void Awake()
     {
+        playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -130,7 +132,7 @@ public class enemy4 : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
 
@@ -147,7 +149,7 @@ public class enemy4 : MonoBehaviour
         if (other.CompareTag("Attack1"))
         {
             damagetakenSpeaker.Play();
-            TakeDamage(1);
+            TakeDamage(playerController.damage);
 
         }
     }
