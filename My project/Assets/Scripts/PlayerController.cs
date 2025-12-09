@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting = false;
     public bool isSlashing = false;
     public bool isShooting = false;
-    public static bool SwordF = false;
+    public static bool SwordF = true;
     public static bool BowF = false;
 
     
@@ -124,28 +124,28 @@ public class PlayerController : MonoBehaviour
      //LEVELS
         if (level >= 2f)
         {
-            health += 100;
+            
             maxhealth = 45;
             damage = 1f;
         }
        
         if (level >= 3f)
         {
-            health += 100;
+            
             maxhealth = 70;
             damage = 1.5f;
         }
        
         if (level >= 4f)
         {
-            health += 100;
+            
             maxhealth = 95;
             damage = 2f;
         }
        
         if (level >= 5f)
         {
-            health += 120;
+            
             maxhealth = 120;
             damage = 3f;
         }
@@ -236,9 +236,9 @@ public class PlayerController : MonoBehaviour
     public void Sprint()
     {
 
-        //if (!isSprinting)
+        if (!isSprinting)
         {
-          //  speed = 23;
+            speed = 23;
 
         }
 

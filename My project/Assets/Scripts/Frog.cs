@@ -63,6 +63,7 @@ public class enemy1 : MonoBehaviour
         playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
 
         player = GameObject.FindGameObjectWithTag("player")?.transform;
+        damagetakenSpeaker = GameObject.FindGameObjectWithTag("damageaudio")?.GetComponent<AudioSource>();
 
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
@@ -154,15 +155,15 @@ public class enemy1 : MonoBehaviour
 
     private IEnumerator Spawn1()
     {
-        yield return new WaitForSeconds(2f);
+       // yield return new WaitForSeconds(2f);
 
-        Instantiate(spawn, Spawnpoint.position, Spawnpoint.rotation);
+      //  Instantiate(spawn, Spawnpoint.position, Spawnpoint.rotation);
         
-        spawnRoutine = false;
+      //  spawnRoutine = false;
 
         yield return new WaitForSeconds(15f);
 
-        spawnRoutine = true;
+      //  spawnRoutine = true;
     }
     private void ResetAttack()
     {
