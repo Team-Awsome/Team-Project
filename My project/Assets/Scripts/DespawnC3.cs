@@ -3,6 +3,7 @@ using System.Collections;
 
 public class dialogueControl3 : MonoBehaviour
 {
+    public float time = 1f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -25,7 +26,7 @@ public class dialogueControl3 : MonoBehaviour
         enemies.SetActive(false);
 
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(time);
 
         Destroy(gameObject);
        

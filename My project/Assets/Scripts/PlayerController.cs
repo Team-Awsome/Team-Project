@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public float level = 1f; 
     public float xp = 1f; 
     public float damage = 0.5f; 
+    public int Kills = 0; 
 
     public int health = 20;
     public int maxhealth = 20;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting = false;
     public bool isSlashing = false;
     public bool isShooting = false;
-    public static bool SwordF = true;
+    public static bool SwordF = false;
     public static bool BowF = false;
 
     
@@ -113,6 +114,7 @@ public class PlayerController : MonoBehaviour
                 deathspeaker.Play();
             }
             
+
 
         if (health <= 0)
         {

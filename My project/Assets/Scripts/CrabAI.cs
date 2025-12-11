@@ -31,24 +31,29 @@ public class enemy3 : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool Edropper = false;
 
     private Rigidbody rb;
     private int enemyLayer;
 
+    PlayerController playerController;
+
     private IEnumerator dropper()
     {
+        playerController.Kills += 1;
+
         int random = Random.Range(1, 100);
 
         Debug.Log("RANDOM WAS  " + random);
 
-        if (random >= 80)
+        if (random >= 45)
         {
             Debug.Log("GOOD LUCK");
             Instantiate(drop, Spawnpoint.position, Spawnpoint.rotation);
             Destroy(gameObject);
         }
 
-        if (random < 80)
+        if (random < 45)
         {
             Debug.Log("BAD LUCK");
             Destroy(gameObject);
@@ -62,8 +67,9 @@ public class enemy3 : MonoBehaviour
     }
     private void Awake()
     {
+        playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
         player = GameObject.FindGameObjectWithTag("player")?.transform;
-
+        damagetakenSpeaker = GameObject.FindGameObjectWithTag("damageaudio")?.GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
@@ -163,7 +169,7 @@ public class enemy3 : MonoBehaviour
 
         Instantiate(attack, Spawnpoint2.position, Spawnpoint.rotation);
 
-        StartCoroutine(ReenableAgentAttack());
+       
     }
     private IEnumerator ReenableAgent()
     {
@@ -185,26 +191,7 @@ public class enemy3 : MonoBehaviour
         agent.enabled = true;
         alreadyAttacked = false;
     }
-    private IEnumerator ReenableAgentAttack()
-    {
-        // Wait until grounded on actual ground (not another enemy)
-        yield return new WaitUntil(() => IsGroundedProper());
-
-        // Wait a moment for stability
-        yield return new WaitForSeconds(0.25f);
-
-        rb.isKinematic = true;
-
-        // Try to snap to nearest navmesh point
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
-        {
-            transform.position = hit.position;
-        }
-
-        agent.enabled = true;
-        alreadyAttacked = true;
-    }
+    
 
     private bool IsGroundedProper()
     {
@@ -223,20 +210,28 @@ public class enemy3 : MonoBehaviour
         health -= damage;
 
         if (health <= 0)
+        {          
             Invoke(nameof(DestroyEnemy), 0.5f);
+        }
+
     }
 
     private void DestroyEnemy()
     {
-        StartCoroutine(dropper());
+        if (Edropper != true)
+        {
+            Edropper = true;
+            StartCoroutine(dropper());
+        }
+        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Attack1"))
         {
             damagetakenSpeaker.Play();
-            TakeDamage(0.5f);
-          
+            TakeDamage(playerController.damage);
+
         }
         
     }

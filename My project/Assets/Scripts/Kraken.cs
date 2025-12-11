@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MiniBoss : MonoBehaviour
+public class enemy6 : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
@@ -31,13 +31,17 @@ public class MiniBoss : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool Edropper = false;
 
     private Rigidbody rb;
     private int enemyLayer;
 
     PlayerController playerController;
+
     private IEnumerator dropper()
     {
+        playerController.Kills += 1;
+
         int random = Random.Range(1, 100);
 
         Debug.Log("RANDOM WAS  " + random);
@@ -65,7 +69,7 @@ public class MiniBoss : MonoBehaviour
     {
         playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
         player = GameObject.FindGameObjectWithTag("player")?.transform;
-
+        damagetakenSpeaker = GameObject.FindGameObjectWithTag("damageaudio")?.GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
@@ -165,7 +169,7 @@ public class MiniBoss : MonoBehaviour
 
         Instantiate(attack, Spawnpoint2.position, Spawnpoint.rotation);
 
-        StartCoroutine(ReenableAgentAttack());
+       
     }
     private IEnumerator ReenableAgent()
     {
@@ -187,26 +191,7 @@ public class MiniBoss : MonoBehaviour
         agent.enabled = true;
         alreadyAttacked = false;
     }
-    private IEnumerator ReenableAgentAttack()
-    {
-        // Wait until grounded on actual ground (not another enemy)
-        yield return new WaitUntil(() => IsGroundedProper());
-
-        // Wait a moment for stability
-        yield return new WaitForSeconds(0.25f);
-
-        rb.isKinematic = true;
-
-        // Try to snap to nearest navmesh point
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
-        {
-            transform.position = hit.position;
-        }
-
-        agent.enabled = true;
-        alreadyAttacked = true;
-    }
+    
 
     private bool IsGroundedProper()
     {
@@ -225,12 +210,20 @@ public class MiniBoss : MonoBehaviour
         health -= damage;
 
         if (health <= 0)
+        {          
             Invoke(nameof(DestroyEnemy), 0.5f);
+        }
+
     }
 
     private void DestroyEnemy()
     {
-        StartCoroutine(dropper());
+        if (Edropper != true)
+        {
+            Edropper = true;
+            StartCoroutine(dropper());
+        }
+        
     }
     private void OnTriggerEnter(Collider other)
     {

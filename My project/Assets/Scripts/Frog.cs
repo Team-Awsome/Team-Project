@@ -35,6 +35,8 @@ public class enemy1 : MonoBehaviour
     private bool spawnRoutine = true;
     private IEnumerator dropper()
     {
+        playerController.Kills += 1;
+
         int random = Random.Range(1, 100);
         
         Debug.Log("RANDOM WAS  " + random);   

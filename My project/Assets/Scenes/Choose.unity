@@ -157,6 +157,8 @@ MonoBehaviour:
   jumpRayDistance: 1.1
   level: 1
   xp: 1
+  damage: 0.5
+  Kills: 0
   health: 20
   maxhealth: 20
   attacking: 0
@@ -252,12 +254,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921439473}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 19.193832, y: 10.023902, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1752347305}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -667,11 +669,6 @@ PrefabInstance:
       addedObject: {fileID: 921439474}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f573a8bfd19d09c419fcd2d553e1a4ed, type: 3}
---- !u!224 &1752347305 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3952753592598689327, guid: f573a8bfd19d09c419fcd2d553e1a4ed, type: 3}
-  m_PrefabInstance: {fileID: 1752347304}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2063815798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -860,3 +857,4 @@ SceneRoots:
   - {fileID: 1752347304}
   - {fileID: 238047730}
   - {fileID: 2063815798}
+  - {fileID: 921439474}

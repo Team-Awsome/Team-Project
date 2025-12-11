@@ -39,6 +39,8 @@ public class enemy4 : MonoBehaviour
     PlayerController playerController;
     private IEnumerator dropper()
     {
+        playerController.Kills += 1;
+
         int random = Random.Range(1, 100);
 
         Debug.Log("RANDOM WAS  " + random);
@@ -67,6 +69,7 @@ public class enemy4 : MonoBehaviour
         playerController = GameObject.FindGameObjectWithTag("player")?.GetComponent<PlayerController>();
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
+        damagetakenSpeaker = GameObject.FindGameObjectWithTag("damageaudio")?.GetComponent<AudioSource>();
     }
     private void Update()
     {
