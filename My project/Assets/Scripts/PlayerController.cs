@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public bool isSlashing = false;
     public bool isShooting = false;
     public static bool SwordF = false;
-    public static bool BowF = true;
+    public static bool BowF = false;
 
     
     public Transform Spawnpoint1;
