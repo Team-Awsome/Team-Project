@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public bool isSlashing = false;
     public bool isShooting = false;
     public static bool SwordF = false;
-    public static bool BowF = false;
+    public static bool BowF = true;
 
     
     public Transform Spawnpoint1;
@@ -176,31 +176,29 @@ public class PlayerController : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
 
-        // Player Rotation (Horiztonally)
-        Quaternion playerRotation = playerCam.transform.rotation;
-        playerRotation.x = 0;
-        playerRotation.z = 0;
-        transform.rotation = playerRotation;
+        // MOVEMENT (Top-down WASD)
+        float moveX = horizontalMove; // A/D
+        float moveZ = verticalMove;   // W/S
 
+        Vector3 move = new Vector3(moveX, 0, moveZ).normalized;
 
-        // Movement System (Take vert/horiz input and convert to 3D movement)
-        Vector3 temp = rb.linearVelocity;
+        // Apply movement
+        rb.linearVelocity = new Vector3(move.x * speed, rb.linearVelocity.y, move.z * speed);
 
-        temp.x = verticalMove * speed;
-        temp.z = horizontalMove * speed;
+        // ROTATION (face movement direction)
+        if (move.sqrMagnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        }
 
+        // JUMP + INTERACT RAYS
         jumpRay.origin = transform.position;
         jumpRay.direction = -transform.up;
 
         interactRay.origin = playerCam.transform.position;
         interactRay.direction = playerCam.transform.forward;
 
-        
-       
-
-        rb.linearVelocity = (temp.x * transform.forward) +
-                            (temp.y * transform.up) +
-                            (temp.z * transform.right);
     }
     // Read player input and convert to values to be used by rb for movement
     public void Move(InputAction.CallbackContext context)
