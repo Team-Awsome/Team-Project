@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     GameObject gameoverscreen;
     GameObject winscreen;
     GameObject Selection;
+    GameObject SwordPng;
+    GameObject BowPng;
     public PlayerInput input;
     float verticalMove;
     float horizontalMove;
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex >= 2)
         {
             gameoverscreen = GameObject.FindGameObjectWithTag("ui_gameOver");
+            
 
             gameoverscreen.SetActive(false);
             
@@ -66,6 +69,22 @@ public class PlayerController : MonoBehaviour
             Cursor.visible = false;
             deathspeaker = GetComponent<AudioSource>();
 
+            BowPng = GameObject.FindGameObjectWithTag("BowPNG");
+            BowPng.SetActive(false);
+            if (BowF)
+            {
+                BowPng.SetActive(true);
+
+            }
+
+            SwordPng = GameObject.FindGameObjectWithTag("SwordPNG");
+            SwordPng.SetActive(false);
+
+            if (SwordF)
+            {
+                SwordPng.SetActive(true);
+
+            }
             
         }
         if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -221,7 +240,7 @@ public class PlayerController : MonoBehaviour
         BowF = true;       // Use bow
         SwordF = false;    // Disable sword
         
-       
+
         SceneManager.LoadScene(2);
     }
 
@@ -287,6 +306,40 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Damage
+        if (other.gameObject.tag == "Hazard")
+        {
+            health -= 1;
+        }
+
+        if (other.gameObject.tag == "Enemy")
+        {
+            health -= 1;
+        }
+
+        if (other.gameObject.tag == "Enemy2")
+        {
+            health -= 3;
+        }
+        if (other.gameObject.tag == "Ink")
+        {
+            health -= 5;
+        }
+
+        if (other.gameObject.tag == "HomingProj")
+        {
+            health--;
+        }
+
+        if (other.gameObject.tag == "Enemy3")
+        {
+            health -= 1;
+
+            StartCoroutine(Poison());
+
+        }
+
+
         if (other.tag == "KillZone")
         {
             health = 0;
@@ -294,7 +347,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if ((other.tag == "Health") && (health < maxhealth))
+        if ((other.tag == "health") && (health < maxhealth))
         {
             health += 3;    // or health ++; for one
             Destroy(other.gameObject); //or other.gameObject.SetActive(false);
@@ -349,70 +402,20 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter(Collision collision) //enter is once every collison, stay is constant while collision is true
-    {
-     //Damage
-        if (collision.gameObject.tag == "Hazard")
-        {
-            health -= 1;
-        }
-        
-        if (collision.gameObject.tag == "Enemy")
-        {
-            health -= 2;
-        }
-        
-        if (collision.gameObject.tag == "Enemy2")
-        {
-            health -= 3;
-        }
-        if (collision.gameObject.tag == "Ink")
-        {
-            health -= 5;
-        }
-
-        if (collision.gameObject.tag == "HomingProj")
-        {
-            health--;
-        }
-
-        if (collision.gameObject.tag == "Enemy3")
-        {
-            health -= 1;
-            
-            StartCoroutine(Poison());
-            
-        }
-
-    
-
-    }
-    private void OnCollisionStay(Collision collision) //enter is once every collison, stay is constant while collision is true
-    {
-        if (collision.gameObject.tag == "Hazard2")
-        {
-            health--;
-        }
-        
-        
-
-        
-    }
-
     IEnumerator Poison()
     {
         yield return new WaitForSeconds(0.5f);
-        
+
         health -= 3;
-        
+
         yield return new WaitForSeconds(0.5f);
-        
+
         health -= 3;
-        
+
         yield return new WaitForSeconds(0.5f);
-        
+
         health -= 3;
-       
+
 
     }
 }
