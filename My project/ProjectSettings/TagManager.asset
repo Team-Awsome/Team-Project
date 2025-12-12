@@ -32,6 +32,12 @@ TagManager:
   - Attack
   - Proceed
   - damageaudio
+  - SwordPNG
+  - BowPNG
+  - text
+  - health
+  - mb
+  - mb2
   layers:
   - Default
   - TransparentFX

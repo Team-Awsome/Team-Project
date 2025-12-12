@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Choose.unity
     guid: 27e78bd79e3fbce449d87ca1f3648493
   - enabled: 1
-    path: Assets/Scenes/TestMap.unity
-    guid: d867551dd667e8e4498cd2128fb42ab6
+    path: Assets/Scenes/LEvel1.unity
+    guid: 7b7c85db82286464385b314514031a30
+  - enabled: 1
+    path: Assets/Scenes/lEVel2.unity
+    guid: c2f62b157b73d724885b19048abd28f6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 8350c6bafa3fc24448d58f970ac2377c, type: 3}
   m_UseUCBPForAssetBundles: 0
