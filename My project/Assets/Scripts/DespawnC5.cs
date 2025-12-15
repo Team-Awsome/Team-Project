@@ -49,7 +49,7 @@ public class dialogueControl5 : MonoBehaviour
         dialogue.text = " " + "oKAY THAT IS ALL THE TIME I HAVE. GOODBYE";
         
         yield return new WaitForSeconds(4f);
-       
+        
         Destroy(gameObject);
        
     }

@@ -8,7 +8,7 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class dialogueControl6 : MonoBehaviour
 {
-    GameObject Adialogue;
+   
     GameObject mb1;
     GameObject mb2;
     TextMeshProUGUI dialogue;
@@ -17,12 +17,15 @@ public class dialogueControl6 : MonoBehaviour
 
     void Start()
     {
-        Adialogue = GameObject.FindGameObjectWithTag("dialogue_ui");
+       
         if (!Edialogue)
         {
-            dialogue = GameObject.FindGameObjectWithTag("text").GetComponent<TextMeshProUGUI>();
-            dialogue.text = " " + "Bozo";
             SceneManager.LoadScene(0);
+            Time.timeScale = 0;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            
         }
         mb1 = GameObject.FindGameObjectWithTag("mb");
         mb1.SetActive(false); 
