@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
     public float interactDistance = 1f;
     public float jumpRayDistance = 1.1f;
     public float level = 1f; 
-    public float xp = 1f; 
+    public static float xp = 1f; 
     public float damage = 0.5f; 
-    public int Kills = 0; 
-
+    public int Kills = 0;
+    public int Key = 0;
     public int health = 20;
     public int maxhealth = 20;
 
@@ -257,9 +257,17 @@ public class PlayerController : MonoBehaviour
 
         if (!isSprinting)
         {
-            speed = 23;
+            isSprinting = true;
+            speed = 16;
 
         }
+
+        else
+         {
+            isSprinting = false;
+            speed = 11;
+            
+         }
 
     }
 
@@ -353,6 +361,27 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject); //or other.gameObject.SetActive(false);
 
         }
+        
+        if (other.tag == "Key")
+        {
+            Key += 1;    
+            Destroy(other.gameObject);
+
+        }
+        
+        if (other.tag == "Lock")
+        {
+            if (Key >= 1)
+            {
+                Key += - 1;
+                Destroy(other.gameObject); 
+            
+            }
+           
+           
+
+        }
+        
         if (other.tag == "Proceed")
         {
             Time.timeScale = 0;

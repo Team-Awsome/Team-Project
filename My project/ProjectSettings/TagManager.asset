@@ -38,6 +38,8 @@ TagManager:
   - health
   - mb
   - mb2
+  - Lock
+  - Key
   layers:
   - Default
   - TransparentFX

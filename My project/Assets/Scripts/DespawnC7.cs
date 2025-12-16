@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class dialogueControl5 : MonoBehaviour
+public class dialogueControl7 : MonoBehaviour
 {
     TextMeshProUGUI dialogue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,33 +22,37 @@ public class dialogueControl5 : MonoBehaviour
     }
     IEnumerator Talk()
     {
-        dialogue.text = " " + "HELLO. I AM. ELPPA.";
+        dialogue.text = " " + "so";
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.5f);
         
-        dialogue.text = " " + "I AM. YOUR FRIEND";
+        dialogue.text = " " + "you passed THE TUTORIAL";
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4.5f);
         
-        dialogue.text = " " + "CONTROLS? HOW TO PLAY?";
-        
-        yield return new WaitForSeconds(5f);
-
-        dialogue.text = " " + "use wasd to move";
-
-        yield return new WaitForSeconds(3f);
-        
-        dialogue.text = " " + "click LEFT SHIFT to run or un run";
-        
-        yield return new WaitForSeconds(3f);
-        
-        dialogue.text = " " + "left click to attack";
-        
-        yield return new WaitForSeconds(3f);
-        
-        dialogue.text = " " + "oKAY THAT IS ALL THE TIME I HAVE. GOODBYE";
+        dialogue.text = " " + "LEARNED CONTROLS? AND GOT SOME EXP YE?";
         
         yield return new WaitForSeconds(4f);
+
+        dialogue.text = " " + "but";
+
+        yield return new WaitForSeconds(3f);
+        
+        dialogue.text = " " + "I WILL HAVE TO";
+        
+        yield return new WaitForSeconds(3f);
+        
+        dialogue.text = " " + "LET YOU LEARN THE REST FROM HERE";
+        
+        yield return new WaitForSeconds(4f);
+        
+        dialogue.text = " " + "NEW ENEMIES WILL ARISE FROM NOW ON";
+        
+        yield return new WaitForSeconds(4f);
+        
+        dialogue.text = " " + "GOODBYE";
+        
+        yield return new WaitForSeconds(2f);
         
         Destroy(gameObject);
        

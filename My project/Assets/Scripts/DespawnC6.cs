@@ -52,7 +52,7 @@ public class dialogueControl6 : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        dialogue.text = " " + "YOU COMPLETED THE TUTORIAL";
+        dialogue.text = " " + "YOU COMPLETED THE alpha thing";
 
         yield return new WaitForSeconds(5f);
 
@@ -68,7 +68,7 @@ public class dialogueControl6 : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        dialogue.text = " " + "THAT TUTORIAL WAS A TEST";
+        dialogue.text = " " + "THis WAS A TEST";
 
         yield return new WaitForSeconds(5f);
 
