@@ -40,6 +40,7 @@ TagManager:
   - mb2
   - Lock
   - Key
+  - H2
   layers:
   - Default
   - TransparentFX

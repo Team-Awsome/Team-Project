@@ -357,7 +357,13 @@ public class PlayerController : MonoBehaviour
 
         if ((other.tag == "health") && (health < maxhealth))
         {
-            health += 3;    // or health ++; for one
+            health += 7;    // or health ++; for one
+            Destroy(other.gameObject); //or other.gameObject.SetActive(false);
+
+        }
+        if ((other.tag == "H2") && (health < maxhealth))
+        {
+            health += 20;    // or health ++; for one
             Destroy(other.gameObject); //or other.gameObject.SetActive(false);
 
         }

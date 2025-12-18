@@ -1,14 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
-public class BowControl : MonoBehaviour
+public class DSDialogue : MonoBehaviour
 {
-   
+    public float time;
+   public AudioSource E;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
     {
-        StartCoroutine(Despawn());
+       
+      StartCoroutine(Despawn());
+        
 
     }
 
@@ -16,14 +19,15 @@ public class BowControl : MonoBehaviour
     private void Update()
     {
 
-        
+
     }
-    IEnumerator Despawn()
+   public IEnumerator Despawn()
     {
-        yield return new WaitForSeconds(0.7f);
-
-        Destroy(gameObject);
+        
+        yield return new WaitForSeconds(time);
+       
+        E.Play();
 
     }
-   
+
 }

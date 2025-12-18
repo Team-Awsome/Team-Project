@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class BowControl : MonoBehaviour
+public class ByeBye : MonoBehaviour
 {
-   
+    public float time;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
@@ -20,7 +21,7 @@ public class BowControl : MonoBehaviour
     }
     IEnumerator Despawn()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(time);
 
         Destroy(gameObject);
 
