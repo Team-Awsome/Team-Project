@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/L1.unity
     guid: 7f57458cf77535445adc1938250bc818
   - enabled: 1
+    path: Assets/Scenes/L2.unity
+    guid: 2555083e15c4bc94c94a9a7ffe2d4793
+  - enabled: 1
     path: Assets/Scenes/lEVel2.unity
     guid: c2f62b157b73d724885b19048abd28f6
   m_configObjects:
