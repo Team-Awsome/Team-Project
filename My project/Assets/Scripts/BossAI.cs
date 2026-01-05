@@ -48,22 +48,9 @@ public class Boss1 : MonoBehaviour
     {
         playerController.Kills += 1;
 
-        int random = Random.Range(1, 100);
+        Instantiate(drop, Spawnpoint.position, Spawnpoint.rotation);
 
-        Debug.Log("RANDOM WAS  " + random);
-
-        if (random >= 45)
-        {
-            Debug.Log("GOOD LUCK");
-            Instantiate(drop, Spawnpoint.position, Spawnpoint.rotation);
-            Destroy(gameObject);
-        }
-
-        if (random < 45)
-        {
-            Debug.Log("BAD LUCK");
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
 
 
         yield return null;
