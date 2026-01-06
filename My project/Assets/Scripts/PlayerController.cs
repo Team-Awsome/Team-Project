@@ -171,6 +171,13 @@ public class PlayerController : MonoBehaviour
             damage = 3f;
         }
        
+        if (level >= 6f)
+        {
+            
+            maxhealth = 170;
+            damage = 5f;
+        }
+       
     //XP  
         if (xp >= 50f)
         {
@@ -190,6 +197,11 @@ public class PlayerController : MonoBehaviour
         if (xp >= 1250f)
         {
             level = 5f;
+        }
+        
+        if (xp >= 1900f)
+        {
+            level = 6f;
         }
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

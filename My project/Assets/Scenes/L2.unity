@@ -22825,7 +22825,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -22851,11 +22851,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 368517642}
   player: {fileID: 0}
-  health: 250
+  health: 555
   drop: {fileID: 2348034247510511915, guid: b9d059ea954669641999bb442a9b47c9, type: 3}
   spawn: {fileID: 6396912138696530960, guid: b69e908a8d845d84b98e871117a9fd99, type: 3}
   attack: {fileID: 226205705632441336, guid: d2b39b4155591aa4589e197d8b6fe496, type: 3}
-  attack2: {fileID: 226205705632441336, guid: c026cc947a28f2b4ab65edfac9838dcc, type: 3}
+  attack2: {fileID: 226205705632441336, guid: a3ceb3f4d74908d4697e97584ce2f13f, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -22874,8 +22874,8 @@ MonoBehaviour:
   timeBetweenAttacks: 7
   jumpForce: 0
   forwardForce: 0
-  sightRange: 28
-  attackRange: 14
+  sightRange: 32
+  attackRange: 26
   playerInSightRange: 0
   playerInAttackRange: 0
   Edropper: 0
@@ -118995,7 +118995,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7b962cf705d353c4095c43633930b3cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
