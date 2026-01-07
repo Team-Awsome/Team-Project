@@ -80,7 +80,7 @@ public class dialogueControl6 : MonoBehaviour
       
         mb2.SetActive(true);
 
-        Edialogue = false;
+        //Edialogue = false;
         
         Destroy(gameObject);
 

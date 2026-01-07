@@ -22809,7 +22809,7 @@ GameObject:
   - component: {fileID: 368517642}
   - component: {fileID: 368517648}
   m_Layer: 8
-  m_Name: HIM
+  m_Name: pmup
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22853,7 +22853,7 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 555
   drop: {fileID: 2348034247510511915, guid: b9d059ea954669641999bb442a9b47c9, type: 3}
-  spawn: {fileID: 6396912138696530960, guid: b69e908a8d845d84b98e871117a9fd99, type: 3}
+  spawn: {fileID: 6723739517133902543, guid: a46aa0baedefba24dacb71f0c678e98b, type: 3}
   attack: {fileID: 226205705632441336, guid: d2b39b4155591aa4589e197d8b6fe496, type: 3}
   attack2: {fileID: 226205705632441336, guid: a3ceb3f4d74908d4697e97584ce2f13f, type: 3}
   whatIsGround:
@@ -22870,7 +22870,7 @@ MonoBehaviour:
   Attack2: 0
   Attack3: 0
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 25
+  walkPointRange: 7
   timeBetweenAttacks: 7
   jumpForce: 0
   forwardForce: 0
@@ -22923,7 +22923,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19d30e53c81fe94458e2830dfebeb6c0, type: 2}
+  - {fileID: 2100000, guid: 8d76d58f562a30a408d3490d17f70927, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
