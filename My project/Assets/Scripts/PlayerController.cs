@@ -334,6 +334,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.LogWarning("touch");
             health -= 1;
         }
 
